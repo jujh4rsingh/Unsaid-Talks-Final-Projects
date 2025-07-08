@@ -1,0 +1,595 @@
+{
+  "name": "Roadmap Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Student Roadmap Generator",
+        "formDescription": "Get your carreer plans done in one with our facility.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "placeholder": "Enter your full name.",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Age",
+              "placeholder": "Enter how old are you?",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Status",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "High School"
+                  },
+                  {
+                    "option": "University"
+                  }
+                ]
+              },
+              "multiselect": true,
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -960,
+        0
+      ],
+      "id": "f984a469-7a78-4be7-9a6d-fa7d4055a3f2",
+      "name": "Student Initial Details",
+      "webhookId": "41681acd-1ab0-4bd7-807f-668a4211f881"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Class",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "10"
+                  },
+                  {
+                    "option": "12"
+                  }
+                ]
+              },
+              "multiselect": true,
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        -100
+      ],
+      "id": "67e2d460-8946-4446-95d2-e1d2e57dd37d",
+      "name": "High School Student",
+      "webhookId": "901a9a71-734e-4f12-978c-e78018bc9bfd"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Course",
+              "placeholder": "Whats your university course?",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Year",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "1"
+                  },
+                  {
+                    "option": "2"
+                  },
+                  {
+                    "option": "3"
+                  },
+                  {
+                    "option": "4"
+                  },
+                  {
+                    "option": "5"
+                  }
+                ]
+              },
+              "multiselect": true,
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        180
+      ],
+      "id": "38cca57f-379d-40db-a441-b99b7822c893",
+      "name": "University Student",
+      "webhookId": "1076acc4-f0ef-4c7c-8d64-eeac45d46f59"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "26d0c948-8ceb-45dd-adce-68c5ce9a1603",
+              "leftValue": "={{ $json.Status[0] }}",
+              "rightValue": "High School",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -760,
+        0
+      ],
+      "id": "12e1b0f3-4d04-4bf4-999e-a07e9cbb6439",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "acd786da-c6f1-4f82-a595-2ee1bd11a3fc",
+              "leftValue": "={{ $json.Class[0] }}",
+              "rightValue": "10",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -400,
+        -140
+      ],
+      "id": "737ebd41-429d-487a-97e7-1bc8e4e38fa1",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Stream",
+              "placeholder": "Which stream are you plannng to opt?",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -280
+      ],
+      "id": "3baa588e-a215-400b-aec7-283bf6a6f847",
+      "name": "After 10th",
+      "webhookId": "dda95293-52c6-4a87-8e91-07a0b1347ecd"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Stream 1",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Stream 2 "
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Enter the max 2 fields you are planning to opt."
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -60
+      ],
+      "id": "af68675a-1791-43d0-a876-1e8c1a2d1eff",
+      "name": "After 12th",
+      "webhookId": "e5964d5d-7f73-4f00-b430-1d2c7fc7b456"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        80,
+        -40
+      ],
+      "id": "931b6f3a-2b88-4984-b71a-11ed3989928f",
+      "name": "Merge",
+      "alwaysOutputData": true,
+      "notes": "\n"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\n\nconst name = data.Name || \"Student\";\nconst age = data.Age || \"Unknown\";\nconst status = data.Status ? data.Status[0] : \"Unknown\";\nconst classLevel = data.Class ? data.Class[0] : null;\nconst stream = data.Stream || data[\"Stream 1\"] || \"Unknown\";\nconst course = data.Course || \"Unknown\";\nconst year = data.Year ? data.Year[0] : \"Unknown\";\n\nlet educationLevel = \"\";\nlet stage = \"\";\n\nif (status === \"High School\") {\n  educationLevel = \"High School\";\n  stage = classLevel === \"10\" ? \"After 10th\" : \"After 12th\";\n} else {\n  educationLevel = \"University\";\n  stage = `Year ${year}`;\n}\n\nconst careerGoal = educationLevel === \"High School\" ? stream : course;\n\nreturn [\n  {\n    json: {\n      name,\n      age,\n      educationLevel,\n      stage,\n      careerGoal\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        -40
+      ],
+      "id": "435577ea-a87c-4b0d-a1b9-894681e3f9bc",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "==You are a professional student career advisor.\n\nBased on the student's profile below, generate a customized, well-formatted 6-month learning roadmap.\n\nStudent Details:\n- Name: {{ $json.name }}\n- Age: {{ $json.age }}\n- Education Level: {{ $json.educationLevel }}\n- Current Stage: {{ $json.stage }}\n- Career Interest: {{ $json.careerGoal }}\n\nInstructions:\n1. Use **clear section titles** like \"Month 1: [Title]\".\n2. Use bullet points for action items. Avoid Markdown characters.\n3. Format links clearly, like: \"Visit freeCodeCamp (https://www.freecodecamp.org)\".\n4. **Avoid using asterisks (*), hash symbols (#), or raw Markdown.**\n5. Use short paragraphs and a warm, friendly tone.\n6. End with a motivational closing.\n\nReturn clean, well-spaced plain text designed to look readable when pasted into a Word or Google Doc.\n\n",
+        "options": {
+          "systemMessage": "You are a helpful assistant "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        440,
+        -40
+      ],
+      "id": "f7c3a331-de19-4d6f-b3e9-dd3835f21ba2",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        440,
+        180
+      ],
+      "id": "01a13213-8234-4be8-9c3f-6773bae4a0e2",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "kzI4RKP73e8nNKWt",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "driveId": "=myDrive",
+        "folderId": "default",
+        "title": "Student Roadmap"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        960,
+        -40
+      ],
+      "id": "24d32310-7f0f-4dcd-94bf-3455d12c3b88",
+      "name": "Roadmap Document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "16CQV4bz6je52vOJ",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $node[\"Roadmap Document\"].json[\"id\"] }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1360,
+        -40
+      ],
+      "id": "9543db7d-a256-4420-9675-74a7260df0cc",
+      "name": "Download word file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "6PvidVZQYhwMnhlz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "80128f9e-0d3a-43b7-ba4e-c0bfc9ccce99",
+              "name": "content",
+              "value": "=={{ $json.output || 'No roadmap generated' }}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        -40
+      ],
+      "id": "13d7abb1-4931-417f-8d5b-daf74c9d44bd",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $node[\"Roadmap Document\"].json.id }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "={{ $node[\"Edit Fields\"].json.content }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        -40
+      ],
+      "id": "31456786-4c1c-4290-9d8e-c0ef5e3d6324",
+      "name": "Update a document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "16CQV4bz6je52vOJ",
+          "name": "Google Docs account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Student Initial Details": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High School Student": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "High School Student",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "University Student",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "After 10th",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "After 12th",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "After 10th": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "After 12th": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "University Student": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Roadmap Document": {
+      "main": [
+        [
+          {
+            "node": "Update a document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Roadmap Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a document": {
+      "main": [
+        [
+          {
+            "node": "Download word file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "39722375-7bfb-4ccb-886b-03b0218d6396",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "03234dd27044323d202538a60109a115cbd45616aa478880ba94fdf78e5ef5d6"
+  },
+  "id": "lPVR9xIzPBRkEutz",
+  "tags": []
+}
